@@ -1,0 +1,93 @@
+
+CREATE DATABASE Bank;
+
+USE Bank;
+
+DROP TABLE IF EXISTS user_info;
+DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS user_accounts;
+
+
+	 #TABLES#			##
+##################      ##
+### 		   ###   #####
+###            ###   #   #
+### 		   ###   #   #
+
+
+CREATE TABLE user_accounts 
+(
+	junction_id INT AUTO_INCREMENT,
+	account_id 	INT NOT NULL,
+	username 	VARCHAR(100) NOT NULL,
+	INDEX (account_id),
+	INDEX (username),
+	CONSTRAINT user_accounts_fk PRIMARY KEY (junction_id)
+);
+
+CREATE TABLE user_info
+(
+    username 	VARCHAR(100) NOT NULL,
+    password	VARCHAR(20),
+    first_name 	VARCHAR(20),
+    last_name	VARCHAR(20),
+    CONSTRAINT users_pk PRIMARY KEY (username), 
+    CONSTRAINT users_user_accounts_fk FOREIGN KEY (username) REFERENCES user_accounts (username)
+);
+
+CREATE TABLE accounts
+(
+    account_id 		INT,
+    account_type	VARCHAR(100),
+    balance 		DECIMAL (10, 2),
+    CONSTRAINT accounts_pk PRIMARY KEY (account_id), 
+    CONSTRAINT accounts_user_accounts_fk FOREIGN KEY (account_id) REFERENCES user_accounts (account_id)
+);
+
+
+
+
+
+#####  #  #  #####  #####  ######  #######  #####
+  #    ## #  #   	#      #    #     #     #
+  #    # ##  #####  ####   ######     #     #####
+  #    #  #   	 #  #      #  #       #         #
+#####  #  #  #####  #####  #   #      #     #####
+
+#########################################DUM-DUM-DATA##############################################
+
+INSERT INTO user_info (username, password, first_name, last_name) 
+VALUES ("No Woman No Cry", "snooplion." "Calvin", "Broadus");
+
+INSERT INTO user_info (username, password, first_name, last_name) 
+VALUES ("Bob_Sagat1", "summerofgeorge", "Larry", "Seinfeld");
+
+INSERT INTO user_info (username, password, first_name, last_name) 
+VALUES ("Normie101", "boring", "Joe", "Roberts");
+
+INSERT INTO user_info (username, password, first_name, last_name) 
+VALUES ("MusclemanRandyHULKBULKTITAN1", "ironicallybold", "Jeff", "Smith");
+
+INSERT INTO user_info (username, password, first_name, last_name) 
+VALUES ( "Hanshotfirst", "disneyplus", "Mickey", "Mouse");
+
+INSERT INTO user_info (username, password, first_name, last_name) 
+VALUES ( "DeltaStream", "weibo.com", "Wang", "Xian");
+
+INSERT INTO user_info (username, password, first_name, last_name) 
+VALUES ("Likemyhumor?", "itelljokes", "Preston", "Lee");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
